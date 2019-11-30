@@ -47,22 +47,36 @@ body {
   }
 
 .form__title {
+    outline: none;
     border: none;
     height: 36px;
     border-radius: 4px;
     align-self: stretch;
-    box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+    box-shadow: 10px 10px 14px 1px rgba(0, 0, 0, 0.075);
+    transition: 0.2s box-shadow ease;
   }
 
+.form__title:focus {
+  box-shadow: 10px 10px 14px 1px rgba(0, 0, 0, 0.219);
+}
+
 .form__content {
+    outline: none;
     border: none;
     border-radius: 4px;
     align-self: stretch;
     height: 96px;
-    box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+    box-shadow: 10px 10px 14px 1px rgba(0, 0, 0, 0.075);
+    transition: 0.2s box-shadow ease;
+  }
+
+  .form__content:focus {
+    box-shadow: 10px 10px 14px 1px rgba(0, 0, 0, 0.219);
   }
 
   .form__add {
+    outline: none;
+    background: silver;
     border: none;
     border-radius: 8px;
     font-size: 36px;
@@ -71,14 +85,15 @@ body {
   }
     
   .form__add:hover {
-      background: silver;
+      background: rgb(214, 214, 214);
+      box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
     }
 
   .form__add:active {
-    color: silver;
-    background: rgb(51, 51, 51);
+    color: rgb(148, 148, 148);
+    background: rgb(126, 126, 126);
     transform: scale(0.98);
-    box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+    box-shadow: 0 0 0 0 rgba(00, 00, 00, 0.2);
     }
 
 .header {
@@ -92,6 +107,7 @@ body {
   font-size: 36px;
   justify-content: space-between;
   align-items: baseline;
+  z-index: 10;
 }
 
 .fas {
@@ -112,6 +128,18 @@ body {
 
 .navigation__item {
   padding: 0 16px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.navigation__item:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.navigation__button {
+  color: inherit;
+  text-decoration: none;
 }
 
   .header__button {
@@ -140,7 +168,6 @@ body {
     opacity: 1;
     bottom: 0;
   }
-
 }
 
 .article {
@@ -187,4 +214,8 @@ body {
       background: silver;
       color: rgb(151, 10, 10);
       box-shadow: 6px 6px 14px 1px rgba(00, 00, 00, 0.2);
+  }
+
+  .temp {
+    height: 110vh;
   }

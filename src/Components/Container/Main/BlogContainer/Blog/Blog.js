@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blog = (props) => {
     if (props.articles[0]===undefined){
-        props.articles[0] = {};  
+        props.articles[0] = {title: 'HadrianBlog', content: 'BLOG', id: 'noID'};  
     }
 
     if (props.articles[0].id==='noID'){
