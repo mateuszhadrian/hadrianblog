@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/hadrianblog/static/css/main.4e8207a8.chunk.css",
-    "main.js": "/hadrianblog/static/js/main.bf1a2568.chunk.js",
-    "main.js.map": "/hadrianblog/static/js/main.bf1a2568.chunk.js.map",
+    "main.js": "/hadrianblog/static/js/main.fd955612.chunk.js",
+    "main.js.map": "/hadrianblog/static/js/main.fd955612.chunk.js.map",
     "runtime-main.js": "/hadrianblog/static/js/runtime-main.86a74bf0.js",
     "runtime-main.js.map": "/hadrianblog/static/js/runtime-main.86a74bf0.js.map",
     "static/js/2.effdea5b.chunk.js": "/hadrianblog/static/js/2.effdea5b.chunk.js",
     "static/js/2.effdea5b.chunk.js.map": "/hadrianblog/static/js/2.effdea5b.chunk.js.map",
     "index.html": "/hadrianblog/index.html",
-    "precache-manifest.e677bbdc0c1dab914898442336226912.js": "/hadrianblog/precache-manifest.e677bbdc0c1dab914898442336226912.js",
+    "precache-manifest.8cfe7d6976574c3108a3f226c09f3bef.js": "/hadrianblog/precache-manifest.8cfe7d6976574c3108a3f226c09f3bef.js",
     "service-worker.js": "/hadrianblog/service-worker.js",
     "static/css/main.4e8207a8.chunk.css.map": "/hadrianblog/static/css/main.4e8207a8.chunk.css.map",
     "static/media/index.css": "/hadrianblog/static/media/background.f815cc37.jpg"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.86a74bf0.js",
     "static/js/2.effdea5b.chunk.js",
     "static/css/main.4e8207a8.chunk.css",
-    "static/js/main.bf1a2568.chunk.js"
+    "static/js/main.fd955612.chunk.js"
   ]
 }
