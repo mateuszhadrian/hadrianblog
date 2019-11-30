@@ -134,7 +134,6 @@ body {
 .article {
   margin: 80px 0;
   width:100%;
-  opacity: 100%;
   transition: 0.2s all ease-in-out;
 }
 

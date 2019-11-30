@@ -14,8 +14,7 @@ const BlogContainer = (props) => {
             DbHelperSingleton.getInstance().pushArticle({
                 title: e.target[0].value,
                 content: e.target[1].value });
-                e.target[0].value = '';
-                e.target[1].value = '';
+                e.target.reset();
         }
     }
 
