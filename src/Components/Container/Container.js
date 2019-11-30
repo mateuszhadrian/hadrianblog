@@ -1,16 +1,14 @@
 import React from 'react';
-import firebase from 'firebase';
-import {DB_CONFIG} from '../../Config';
 
 import Header from './Header/Header'
 import Main from './Main/Main'
+import { DbHelperSingleton } from '../../Helpers/dbHelper';
 
 class Container extends React.Component {
     constructor() {
         super()
         
-        this.app = firebase.initializeApp(DB_CONFIG);
-        this.database = this.app.database().ref('blogArticles');
+        this.database = DbHelperSingleton.getInstance().getArticles();
 
         this.state = {
             articles: []
@@ -18,10 +16,24 @@ class Container extends React.Component {
     }
     componentDidMount() {
         this.database.on('value', snap => {
-            this.setState({
-                articles: Object.values(snap.val())
-            });
+            if (snap.val()) {
+                this.setState({
+                    articles: Object.values(snap.val())
+                });
+            } else {
+                this.setState({
+                    articles: [{
+                        title: 'BRAK ARTYKUŁÓW',
+                        content: 'BRAK ARTYKUŁÓW DO WYŚWIETLENIA',
+                        id: 'noID'
+                    }]
+                })
+            }
         });
+    }
+
+    componentWillUnmount() {
+        this.database.removeEventListener('value');
     }
 
     render() {

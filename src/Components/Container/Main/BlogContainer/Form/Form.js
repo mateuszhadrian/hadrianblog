@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Form = () => {
+const Form = (props) => {
         return (
-    <form autocomplete="off" class ="form">
+    <form onSubmit={props.submitFn} autocomplete="off" class="form">
         <label for="title" class="form__label">Tytuł</label>
-        <input id="title" class="form__title"></input>
+        <input id="title" class="form__title" />
         <label for="content" class="form__label">Treść</label>
         <textarea id="content" class="form__content"></textarea>
-        <button class="form__add">Dodaj artykuł</button>
+        <button type="submit" class="form__add">Dodaj artykuł</button>
     </form>
     )
 }  
