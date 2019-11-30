@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Blog = (props) => {
-    if (props.articles[0]==undefined){
+    if (props.articles[0]===undefined){
         props.articles[0] = {};  
     }
 
-    if (props.articles[0].id=='noID'){
+    if (props.articles[0].id==='noID'){
         return (
             <div className="blog-container">
                         <div className="blog">

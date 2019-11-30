@@ -8,7 +8,7 @@ const BlogContainer = (props) => {
 
     const addPost = (e) => {
         e.preventDefault();
-        if ((e.target[0].value == '')||(e.target[1].value == '')){
+        if ((e.target[0].value === '')||(e.target[1].value === '')){
             alert('Wypełnij oba pola')
         } else {
             DbHelperSingleton.getInstance().pushArticle({
