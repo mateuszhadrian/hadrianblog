@@ -219,3 +219,8 @@ body {
   .temp {
     height: 110vh;
   }
+
+.page404 {
+  margin-top: 160px;
+  position: absolute;
+}  

@@ -1,11 +1,11 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom'
-import BlogView from '../../views/BlogView/BlogView'
 import GalleryView from '../../views/GalleryView/GalleryView'
 
 import Header from './Header/Header'
 import Main from './Main/Main'
 import { DbHelperSingleton } from '../../Helpers/dbHelper';
+import {Page404} from './Main/404';
 
 class Container extends React.Component {
     constructor() {
@@ -47,8 +47,7 @@ class Container extends React.Component {
             <Header />
             <Route exact path="/" component={() => <Main articles={this.state.articles} />}/>
             <Route path="/gallery" component={GalleryView}/>
-            {/* <Main 
-            articles={this.state.articles} */}
+            <Route path="*" component={Page404}/>
         </section>
             </>
             </BrowserRouter>    
