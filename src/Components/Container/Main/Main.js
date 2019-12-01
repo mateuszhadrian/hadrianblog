@@ -3,13 +3,12 @@ import BlogContainer from './BlogContainer/BlogContainer'
 
 
 const Main = (props) => {
+    
     return (
-    <main className="main">
-        <BlogContainer
-        articles={props.articles}
-        />
-    </main>
-)
-    }
+        <main className="main">
+            <BlogContainer articles={props.articles} />
+        </main>
+    );
+}
 
 export default Main

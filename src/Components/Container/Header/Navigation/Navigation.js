@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 const Navigation = () => (
     <ul className="navigation__list">
-        <a className="navigation__button" href='/'><li className="navigation__item">blog</li></a>
-        <a className="navigation__button" href='/gallery'><li className="navigation__item">galeria</li></a>
+        <li className="navigation__item"><Link className="navigation__button" to="/">blog</Link></li>
+        <li className="navigation__item"><Link className="navigation__button" to="/gallery">galeria</Link></li>
     </ul>
 )
 

@@ -1,11 +1,10 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom'
+import {HashRouter, Route, Redirect} from 'react-router-dom'
 import GalleryView from '../../views/GalleryView/GalleryView'
 
 import Header from './Header/Header'
 import Main from './Main/Main'
 import { DbHelperSingleton } from '../../Helpers/dbHelper';
-import {Page404} from './Main/404';
 
 class Container extends React.Component {
     constructor() {
@@ -19,19 +18,10 @@ class Container extends React.Component {
     }
     componentDidMount() {
         this.database.on('value', snap => {
-            if (snap.val()) {
+            const values = snap.val()
                 this.setState({
-                    articles: Object.values(snap.val())
+                    articles: values ? Object.values(values) : []
                 });
-            } else {
-                this.setState({
-                    articles: [{
-                        title: 'BRAK ARTYKUŁÓW',
-                        content: 'BRAK ARTYKUŁÓW DO WYŚWIETLENIA',
-                        id: 'noID'
-                    }]
-                })
-            }
         });
     }
 
@@ -41,16 +31,16 @@ class Container extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
+            <HashRouter>
             <>
             <section className="container">
             <Header />
             <Route exact path="/" component={() => <Main articles={this.state.articles} />}/>
             <Route path="/gallery" component={GalleryView}/>
-            <Route path="*" component={Page404}/>
+            
         </section>
             </>
-            </BrowserRouter>    
+            </HashRouter>    
         )
     }
 
