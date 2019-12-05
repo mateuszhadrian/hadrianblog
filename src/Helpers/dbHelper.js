@@ -3,22 +3,34 @@ import {DB_CONFIG} from '../Config'
 
 class DbHelper {
     articles = 'blogArticles';
+    URLs = 'imageURLs';
 
     constructor() {
         this.app = firebase.initializeApp(DB_CONFIG);
     }
 
-    getId = () => this.app.database().ref(this.articles).push().key;
+    getArticleId = () => this.app.database().ref(this.articles).push().key;
 
     pushArticle = (article) => {
-        const randomId = this.getId();
-        this.app.database().ref(this.articles).child(randomId).set({
-            id: randomId,
+        const randomArticleId = this.getArticleId();
+        this.app.database().ref(this.articles).child(randomArticleId).set({
+            id: randomArticleId,
             title: article.title,
             content: article.content
         })
     }
 
+    getImageId = () => this.app.database().ref(this.URLs).push().key;
+
+    pushImageUrl = (ImageUrl) => {
+        const randomImageId = this.getImageId();
+        this.app.database().ref(this.URLs).child(randomImageId).set({
+            URL: ImageUrl.URL
+        })
+    }
+
+    storage = () => this.app.storage()
+    getURLs = () => this.app.database().ref(this.URLs);
     getArticles = () => this.app.database().ref(this.articles);
     removeArticle = (id) => this.getArticles().child(id).remove();
 }

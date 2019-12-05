@@ -26,7 +26,7 @@ class Container extends React.Component {
     }
 
     componentWillUnmount() {
-        this.database.removeEventListener('value');
+        this.database.off('value');
     }
 
     render() {
