@@ -75,7 +75,7 @@ class GalleryView extends React.Component {
     <div className="gallery__body">
         <form className="gallery__form">
                 <label className="gallery__button" htmlFor = "upload-btn">Dodaj zdjęcie</label>
-                <input id="upload-btn" style={{display: "none"}}type="file" onChange={this.handleChange}/>
+                <input accept="image/x-png,image/gif,image/jpeg" id="upload-btn" style={{display: "none"}}type="file" onChange={this.handleChange}/>
         </form>
         <div className="gallery__container">
             {this.state.images.map(item => 

@@ -322,6 +322,12 @@ body {
 .gallery__image {
   max-width: 90vw;
   max-height: 90vh;
+  transition: 0.4s all ease-in;
+}
+
+.gallery__image:hover {
+  max-width: 98vw;
+  max-height: 98vh;
 }
 
 .gallery__preview-container{
