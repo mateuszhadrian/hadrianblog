@@ -22,10 +22,12 @@ class DbHelper {
 
     getImageId = () => this.app.database().ref(this.URLs).push().key;
 
-    pushImageUrl = (ImageUrl) => {
+    pushImageUrl = (ImageData) => {
         const randomImageId = this.getImageId();
         this.app.database().ref(this.URLs).child(randomImageId).set({
-            URL: ImageUrl.URL
+            ID: randomImageId,
+            name: ImageData.name,
+            URL: ImageData.URL
         })
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DbHelperSingleton } from '../../Helpers/dbHelper' 
+import { DbHelperSingleton } from '../../Helpers/dbHelper';
 
 class GalleryView extends React.Component {
     constructor(){
@@ -11,7 +11,9 @@ class GalleryView extends React.Component {
 
     this.state = {
         image: null,
-        images: [{URL: 'https://slodycze-24.pl/wp-content/uploads/2019/08/placeholder.jpg'}]
+        images: [{URL: 'https://slodycze-24.pl/wp-content/uploads/2019/08/placeholder.jpg'}],
+        clickImageURL: '',
+        display: 'none'
         }
     }
 
@@ -24,6 +26,7 @@ class GalleryView extends React.Component {
                 () => {this.storage.ref("images").child(image.name).getDownloadURL().then(url => {
                     const imgURL = url;
                     DbHelperSingleton.getInstance().pushImageUrl({
+                        name: image.name,
                         URL: imgURL
               })
                 });
@@ -32,14 +35,32 @@ class GalleryView extends React.Component {
         }
       };
 
+    removeImg = (ImgID, ImgName) => {
+        this.storage.ref("images").child(ImgName).delete();
+        this.database.child(ImgID).remove();
+
+    }
+
     componentDidMount() {
         this.database.on('value', snap => {
             const images = snap.val()
                 this.setState({
                     images: images ? Object.values(images) : []
                 });
-                console.log(this.state.images);
         });
+    }
+
+    showPreview = (itemURL) => {
+        this.setState({
+            clickImageURL: itemURL ? itemURL : '',
+            display: 'flex'
+        }) 
+    }
+
+    closePreview = () => {
+        this.setState({
+            display: 'none'
+        })
     }
 
     componentWillUnmount() {
@@ -48,24 +69,50 @@ class GalleryView extends React.Component {
 
     render(){
             return (
+   
+    <div className="gallery">
     <div className="gallery__body">
         <form className="gallery__form">
-                <label className="gallery__button" for = "upload-btn">Dodaj zdjęcie</label>
+                <label className="gallery__button" htmlFor = "upload-btn">Dodaj zdjęcie</label>
                 <input id="upload-btn" style={{display: "none"}}type="file" onChange={this.handleChange}/>
         </form>
         <div className="gallery__container">
             {this.state.images.map(item => 
-            <div
-            style={{
-                backgroundImage: `url(${item.URL})`,
-                backgroundSize:'cover',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                borderRadius: '12px',
-                boxShadow: '10px 10px 14px 1px rgba(0, 0, 0, 0.075)'
-            }}></div>)}
+                <div onClick={() => this.showPreview(item.URL)}className='gallery__thumbnail'
+                style={{
+                    height: '100%',
+                    backgroundImage: `url(${item.URL})`,
+                    backgroundSize:'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    borderRadius: '12px',
+                }}> 
+                    <div onClick={() => this.removeImg(item.ID, item.name)} className="gallery__remove">
+                    <i className="fas fa-trash"></i>
+                    </div>
+                    </div>)}
         </div>
     </div>
+            <div className="gallery__preview-container" style={{
+                display: `${this.state.display}`
+            }}>
+                <div className="gallery__preview" style={{
+                    backgroundImage: `url(${this.state.clickImageURL})`,
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    width:'90vw',
+                    height: '80vh',
+                    display: 'flex',
+                    justifyContent: 'center'
+                    }}>
+                        <div onClick={() => this.closePreview()} className="preview__button">zamknij podgląd</div>
+                </div>
+            </div>
+    </div>
+    
+
+    
     
             )
         }
