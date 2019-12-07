@@ -314,11 +314,20 @@ body {
   color: #800000;
 }
 
+.gallery__preview {
+  display: flex;
+  justify-content: center
+}
+
+.gallery__image {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
 .gallery__preview-container{
   background: rgba(0, 0, 0, 0.733);
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   justify-content: center;

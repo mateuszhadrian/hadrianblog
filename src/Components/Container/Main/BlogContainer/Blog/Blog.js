@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blog = (props) => {
     const articles = props.articles;
-    const isNotEmpty = articles !== undefined && articles.length !== 0;
+    const isNotEmpty = (articles !== undefined) && (articles.length !== 0);
 
     return (
         <div className="blog-container">
@@ -15,7 +15,7 @@ const Blog = (props) => {
                 </div>                
             </article>
             )}
-            {isNotEmpty && props.articles.reverse().map(item=>
+            {isNotEmpty && props.articles.map(item=>
             <article key={item.id} className="article">
                 <h2 className="article__header">{item.title}</h2>
                     <div className="article__area">

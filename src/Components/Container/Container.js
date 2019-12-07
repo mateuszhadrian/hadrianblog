@@ -20,7 +20,7 @@ class Container extends React.Component {
         this.database.on('value', snap => {
             const values = snap.val()
                 this.setState({
-                    articles: values ? Object.values(values) : []
+                    articles: values ? Object.values(values).reverse() : []
                 });
         });
     }

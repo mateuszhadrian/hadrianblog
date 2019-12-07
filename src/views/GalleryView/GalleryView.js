@@ -35,7 +35,8 @@ class GalleryView extends React.Component {
         }
       };
 
-    removeImg = (ImgID, ImgName) => {
+    removeImg = (e, ImgID, ImgName) => {
+        e.stopPropagation();
         this.storage.ref("images").child(ImgName).delete();
         this.database.child(ImgID).remove();
 
@@ -87,7 +88,7 @@ class GalleryView extends React.Component {
                     backgroundPosition: 'center',
                     borderRadius: '12px',
                 }}> 
-                    <div onClick={() => this.removeImg(item.ID, item.name)} className="gallery__remove">
+                    <div onClick={e => this.removeImg(e, item.ID, item.name)} className="gallery__remove">
                     <i className="fas fa-trash"></i>
                     </div>
                     </div>)}
@@ -95,18 +96,12 @@ class GalleryView extends React.Component {
     </div>
             <div className="gallery__preview-container" style={{
                 display: `${this.state.display}`
-            }}>
-                <div className="gallery__preview" style={{
-                    backgroundImage: `url(${this.state.clickImageURL})`,
-                    backgroundSize: 'contain',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    width:'90vw',
-                    height: '80vh',
-                    display: 'flex',
-                    justifyContent: 'center'
-                    }}>
-                        <div onClick={() => this.closePreview()} className="preview__button">zamknij podgląd</div>
+            }}
+            onClick={() => this.closePreview()} 
+            >
+                <div className="gallery__preview">
+                    <img className="gallery__image" src={this.state.clickImageURL}
+                        onClick={(e)=>e.stopPropagation()}></img>
                 </div>
             </div>
     </div>
