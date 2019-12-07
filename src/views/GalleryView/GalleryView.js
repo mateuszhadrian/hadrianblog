@@ -1,5 +1,6 @@
 import React from 'react';
 import { DbHelperSingleton } from '../../Helpers/dbHelper';
+import CryptoJS from 'crypto-js'
 
 class GalleryView extends React.Component {
     constructor(){
@@ -20,13 +21,14 @@ class GalleryView extends React.Component {
     handleChange = (e) => {
         if (e.target.files[0]){
             const image = e.target.files[0];
-            this.storage.ref(`images/${image.name}`).put(image).on("state_changed",
+            const imageNameHashed = CryptoJS.MD5(image.name + Date.now()).toString();
+            this.storage.ref(`images/${imageNameHashed}`).put(image).on("state_changed",
                 snap => {console.log(snap)}, 
                 error => {console.log(error)},
-                () => {this.storage.ref("images").child(image.name).getDownloadURL().then(url => {
+                () => {this.storage.ref("images").child(imageNameHashed).getDownloadURL().then(url => {
                     const imgURL = url;
                     DbHelperSingleton.getInstance().pushImageUrl({
-                        name: image.name,
+                        name: imageNameHashed,
                         URL: imgURL
               })
                 });
