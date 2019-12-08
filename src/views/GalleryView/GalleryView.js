@@ -1,6 +1,7 @@
 import React from 'react';
 import { DbHelperSingleton } from '../../Helpers/dbHelper';
 import CryptoJS from 'crypto-js'
+import Scroll from 'react-scroll'
 
 class GalleryView extends React.Component {
     constructor(){
@@ -11,6 +12,7 @@ class GalleryView extends React.Component {
         this.storage = DbHelperSingleton.getInstance().storage();
 
     this.state = {
+        progress: '',
         image: null,
         images: [{URL: 'https://slodycze-24.pl/wp-content/uploads/2019/08/placeholder.jpg'}],
         clickImageURL: '',
@@ -23,7 +25,18 @@ class GalleryView extends React.Component {
             const image = e.target.files[0];
             const imageNameHashed = CryptoJS.MD5(image.name + Date.now()).toString();
             this.storage.ref(`images/${imageNameHashed}`).put(image).on("state_changed",
-                snap => {console.log(snap)}, 
+                snap => {
+                    if (snap.bytesTransferred/snap.totalBytes == 0){
+                        this.setState({
+                            progress: 'ładowanie ...'  
+                        })
+                    } else {
+                        this.setState({
+                            progress: ''
+                        });
+                        Scroll.animateScroll.scrollToBottom()
+                        }   
+                    }, 
                 error => {console.log(error)},
                 () => {this.storage.ref("images").child(imageNameHashed).getDownloadURL().then(url => {
                     const imgURL = url;
@@ -66,6 +79,7 @@ class GalleryView extends React.Component {
         })
     }
 
+
     componentWillUnmount() {
         this.database.off('value');
     }
@@ -78,6 +92,7 @@ class GalleryView extends React.Component {
         <form className="gallery__form">
                 <label className="gallery__button" htmlFor = "upload-btn">Dodaj zdjęcie</label>
                 <input accept="image/x-png,image/gif,image/jpeg" id="upload-btn" style={{display: "none"}}type="file" onChange={this.handleChange}/>
+                <h2 className="gallery__loading" >{this.state.progress}</h2>
         </form>
         <div className="gallery__container">
             {this.state.images.map(item => 
