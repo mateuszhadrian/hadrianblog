@@ -20,7 +20,7 @@ const Blog = (props) => {
                 <h2 className="article__header">{item.title}</h2>
                     <div className="article__area">
                         <p className="article__content">{item.content}</p>
-                        <button onClick={() => props.removeFn(item.id)} className="article__button--remove">X</button>
+                        {props.user ? (<button onClick={() => props.removeFn(item.id)} className="article__button--remove">X</button>) : (<div></div>)}       
                     </div>                
             </article>
             )}

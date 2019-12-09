@@ -374,3 +374,20 @@ body {
   margin: 16px 0 0 0;
   text-align: center;
 }
+
+.login__container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 40vh;
+}
+
+.login__info {
+  text-align: center;
+}
+
+.login__loggedin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -11,6 +11,8 @@ class DbHelper {
 
     getArticleId = () => this.app.database().ref(this.articles).push().key;
 
+    
+
     pushArticle = (article) => {
         const randomArticleId = this.getArticleId();
         this.app.database().ref(this.articles).child(randomArticleId).set({

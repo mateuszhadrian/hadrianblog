@@ -7,7 +7,6 @@ class GalleryView extends React.Component {
     constructor(){
         super()
 
-        // this.database2 = DbHelperSingleton.getInstance().pushImageURL()
         this.database = DbHelperSingleton.getInstance().getURLs();
         this.storage = DbHelperSingleton.getInstance().storage();
 
@@ -48,6 +47,7 @@ class GalleryView extends React.Component {
                     }
       )
         }
+        
       };
 
     removeImg = (e, ImgID, ImgName) => {
@@ -89,11 +89,14 @@ class GalleryView extends React.Component {
    
     <div className="gallery">
     <div className="gallery__body">
+    {this.props.user ? (
         <form className="gallery__form">
-                <label className="gallery__button" htmlFor = "upload-btn">Dodaj zdjęcie</label>
-                <input accept="image/x-png,image/gif,image/jpeg" id="upload-btn" style={{display: "none"}}type="file" onChange={this.handleChange}/>
-                <h2 className="gallery__loading" >{this.state.progress}</h2>
+        <label className="gallery__button" htmlFor = "upload-btn">Dodaj zdjęcie</label>
+        <input accept="image/x-png,image/gif,image/jpeg" id="upload-btn" style={{display: "none"}}type="file" onChange={this.handleChange}/>
+        <h2 className="gallery__loading" >{this.state.progress}</h2>
         </form>
+    ) : (<div></div>)}
+        
         <div className="gallery__container">
             {this.state.images.map(item => 
                 <div onClick={() => this.showPreview(item.URL)}className='gallery__thumbnail'
@@ -105,9 +108,12 @@ class GalleryView extends React.Component {
                     backgroundPosition: 'center',
                     borderRadius: '12px',
                 }}> 
-                    <div onClick={e => this.removeImg(e, item.ID, item.name)} className="gallery__remove">
-                    <i className="fas fa-trash"></i>
-                    </div>
+                    {this.props.user ? (
+                        <div onClick={e => this.removeImg(e, item.ID, item.name)} className="gallery__remove">
+                        <i className="fas fa-trash"></i>
+                        </div>
+                     ) : (<div></div>)}
+                    
                     </div>)}
         </div>
     </div>

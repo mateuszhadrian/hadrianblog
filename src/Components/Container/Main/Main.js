@@ -6,7 +6,7 @@ const Main = (props) => {
     
     return (
         <main className="main">
-            <BlogContainer articles={props.articles} />
+            <BlogContainer user={props.user} articles={props.articles} />
         </main>
     );
 }
