@@ -41,7 +41,7 @@ class BlogContainer extends React.Component {
     render() {
         return (
             <>
-                {this.props.user ? (<Form submitFn={this.addPost} /> ) : (<div></div>)}
+                {this.props.user ? (<Form submitFn={this.addPost} /> ) : null}
                  
                 {!!this.state.errorInfo && 
                 <EmptyField 

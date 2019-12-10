@@ -25,7 +25,7 @@ class GalleryView extends React.Component {
             const imageNameHashed = CryptoJS.MD5(image.name + Date.now()).toString();
             this.storage.ref(`images/${imageNameHashed}`).put(image).on("state_changed",
                 snap => {
-                    if (snap.bytesTransferred/snap.totalBytes == 0){
+                    if (snap.bytesTransferred/snap.totalBytes === 0){
                         this.setState({
                             progress: 'ładowanie ...'  
                         })
@@ -123,7 +123,7 @@ class GalleryView extends React.Component {
             onClick={() => this.closePreview()} 
             >
                 <div className="gallery__preview">
-                    <img className="gallery__image" src={this.state.clickImageURL}
+                    <img alt='gallery element' className="gallery__image" src={this.state.clickImageURL}
                         onClick={(e)=>e.stopPropagation()}></img>
                 </div>
             </div>

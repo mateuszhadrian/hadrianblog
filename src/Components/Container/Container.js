@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter, Route, Redirect} from 'react-router-dom'
+import {HashRouter, Route} from 'react-router-dom'
 import GalleryView from '../../views/GalleryView/GalleryView'
 import LoginView from '../../views/LoginView/LoginView'
 
