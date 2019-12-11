@@ -106,7 +106,6 @@ class GalleryView extends React.Component {
                     backgroundSize:'cover',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
-                    borderRadius: '12px',
                 }}> 
                     {this.props.user ? (
                         <div onClick={e => this.removeImg(e, item.ID, item.name)} className="gallery__remove">
