@@ -95,7 +95,7 @@ class GalleryView extends React.Component {
         <input accept="image/x-png,image/gif,image/jpeg" id="upload-btn" style={{display: "none"}}type="file" onChange={this.handleChange}/>
         <h2 className="gallery__loading" >{this.state.progress}</h2>
         </form>
-    ) : (<div></div>)}
+    ) : null }
         
         <div className="gallery__container">
             {this.state.images.map(item => 
@@ -111,7 +111,7 @@ class GalleryView extends React.Component {
                         <div onClick={e => this.removeImg(e, item.ID, item.name)} className="gallery__remove">
                         <i className="fas fa-trash"></i>
                         </div>
-                     ) : (<div></div>)}
+                     ) : null }
                     
                     </div>)}
         </div>
