@@ -3,3 +3,9 @@
 ## created using React and connected to backend on google firebase (database, storage, authentication)
 
 ### https://mateuszhadrian.github.io/hadrianblog/
+
+
+test credentials:
+
+E-mail: ala@ma.pl
+Hasło: 123abc
